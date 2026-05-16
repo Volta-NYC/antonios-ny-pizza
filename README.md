@@ -1,62 +1,56 @@
-# Purpose
-This repository is the base template that should be used for all future businesses, including basic files such as navbar, footer, and other configs.
+# Antonio's Pizza — Website
 
-# Business Name
+A modern redesign of the website for **Antonio's Pizza**, an electrifying
+pizza place in Brooklyn, NY (318 Flatbush Ave).
 
-Replace this README with business-specific details.
+Rebuilt from scraped source material (`raw messy data/`) into a fast,
+responsive, accessible Next.js site.
 
----
+## Tech Stack
 
-## 🚀 Overview
-
-Short description of the business and what this website is for.
-
-Example:
-"This website serves as the official online presence for [Business Name], showcasing services, contact information, and brand identity."
-
----
-
-## 🛠 Tech Stack
-
-- Next.js (App Router)
-- TypeScript
+- Next.js (App Router) + React + TypeScript
 - Tailwind CSS
-- Hosted on Vercel
+- `next/font` (Fraunces + Hanken Grotesk)
+- Fully static — all routes prerendered
 
----
+## Project Structure
 
-## 📂 Project Structure
+```
+src/
+  app/
+    layout.tsx        Root layout, fonts, metadata, JSON-LD
+    page.tsx          Home (hero, story, values, gallery, visit)
+    about/            Our Story
+    gallery/          Food gallery with lightbox
+    visit/            Hours, address, map
+    sitemap.ts        SEO sitemap
+    robots.ts         SEO robots
+  lib/
+    site.ts           Single source of truth for all business content
+    components/       Navbar, Footer, Marquee, Reveal, PageHeader, Lightbox
+public/images/        Local, deduplicated, optimized media (was on a CDN)
+```
 
-- `src/app` → App Router (homepage, layout, globals)
-- `src/app/pages` → Site pages (About, Contact, etc.)
-- `src/lib/components` → Shared UI components (Navbar/Footer)
-- `public` → Static assets
+## Content & Data
 
----
+All factual content (name, address, phone, hours, "Our Story" copy) lives in
+`src/lib/site.ts`, extracted verbatim from the scraped source page. No prices
+or menu items were invented — the source contained none.
 
-## 🧑‍💻 Development
+## Media
 
-Install dependencies:
+All images were downloaded from the original Squarespace CDN, deduplicated
+(three exact duplicates removed), and stored locally as WebP under
+`public/images/`. The site runs independently of the original host.
+
+## Development
 
 ```bash
 npm install
-npm install --save-dev @types/react
-```
-
-Run locally:
-
-```bash
-npm run dev
+npm run dev      # http://localhost:3000
+npm run build    # production build
 ```
 
 ---
 
-## ✏️ Customization Checklist
-
-- [ ] Replace Business Name in navbar + footer
-- [ ] Update metadata in `src/app/layout.tsx`
-- [ ] Replace homepage content (`src/app/page.tsx`)
-- [ ] Update About + Contact pages (`src/app/pages/*`)
-- [ ] Replace favicon + assets in `public/`
-- [ ] Update SEO metadata
-- [ ] (Optional) Update Volta credit link text / URL in the footer
+Website made by [@VoltaNYC](https://nyc.voltanpo.org).
